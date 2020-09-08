@@ -33,14 +33,13 @@ def extract_face(filename, required_size=(224, 224)):
 
 	return face_array
 
-
 def predict(pic_path):
 
     pixels = extract_face(pic_path)
     test_img = np.expand_dims(pixels, axis=0)
     plt.imshow(pixels)
     plt.show()
-    loaded_model=load_model('model9')
+    loaded_model=load_model('model')
     ageprediction , genderprediction = loaded_model.predict(test_img)
     y_pos = np.arange(101)
     plt.bar(y_pos, ageprediction[0])
@@ -59,9 +58,10 @@ def predict(pic_path):
         gender = "Female"
     output = gender + " , " + "Aged: " + str(age)
     pixels = cv2.resize(pixels, (500,500), interpolation = cv2.INTER_AREA)
+    pixels = cv2.cvtColor(pixels, cv2.COLOR_BGR2RGB)
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.putText(pixels,output ,(5,20), font, 1,(255,255,255),1)
     cv2.imshow("img",pixels)
 
 
-predict('Test/10.jpg')
+predict('Test/testImage.jpg')
