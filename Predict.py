@@ -5,6 +5,7 @@ from tensorflow.keras.models import model_from_json
 import tensorflow as tf
 from PIL import Image
 from mtcnn.mtcnn import MTCNN
+import cv2
 
 num_classes_age = 101
 num_classes_gender = 1
@@ -51,9 +52,16 @@ def predict(pic_path):
     age = ( int(apparent_age[0] + np.argmax(ageprediction)))//2
     print("Age: ", age)
     if genderprediction[0][0]>=0.5:
-            print('Gender: Male')
+            print("Male")
+            gender = "Male"
     else :
-        print('Gender: Female')
+        print("Female")
+        gender = "Female"
+    output = gender + " , " + "Aged: " + str(age)
+    pixels = cv2.resize(pixels, (500,500), interpolation = cv2.INTER_AREA)
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(pixels,output ,(5,20), font, 1,(255,255,255),1)
+    cv2.imshow("img",pixels)
 
 
 predict('Test/10.jpg')
