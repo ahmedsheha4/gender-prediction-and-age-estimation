@@ -1,5 +1,5 @@
 # gender-prediction-and-gender-estimation
-a deep multi-class CNNs architecture to estimate age and predict gender , using TensorFlow2 (Keras API) , numpy , matplotlib , OpenCV and MTCNN for face detection\
+a deep multi-output CNNs architecture to estimate age and predict gender , using TensorFlow2 (Keras API) , numpy , matplotlib , OpenCV and MTCNN for face detection\
 \
 trained on IMDB-WIKI dataset\
 https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/ \
